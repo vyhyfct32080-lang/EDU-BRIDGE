@@ -1,0 +1,8 @@
+{
+  "name": "Remix Công Nghệ Cho Mọi Lứa Tuổi - Tech For All Ages",
+  "description": "Nền tảng học và sử dụng công nghệ an toàn, dễ hiểu, đạt chuẩn trợ năng WCAG AAA dành cho Người cao tuổi và Trẻ em.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

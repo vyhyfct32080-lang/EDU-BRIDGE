@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Công Nghệ Cho Mọi Lứa Tuổi - Tech For All Ages</title>
+  <meta name="description" content="Nền tảng học và sử dụng công nghệ an toàn, dễ hiểu, đạt chuẩn trợ năng WCAG AAA dành cho Người cao tuổi và Trẻ em." />
+  <meta property="og:title" content="Công Nghệ Cho Mọi Lứa Tuổi - Tech For All Ages" />
+  <meta property="og:description" content="Nền tảng học và sử dụng công nghệ an toàn, dễ hiểu, đạt chuẩn trợ năng WCAG AAA dành cho Người cao tuổi và Trẻ em." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            senior: {
+              bg: '#FFFDF5',
+              card: '#FFFFFF',
+              border: '#2C3E50',
+              primary: '#0B4F6C',
+              accent: '#C0392B',
+              text: '#1A252F',
+            },
+            kids: {
+              bg: '#F0F9FF',
+              card: '#FFFFFF',
+              primary: '#0284C7',
+              accent: '#F59E0B',
+              pink: '#EC4899',
+              green: '#10B981',
+              purple: '#8B5CF6',
+              text: '#0F172A',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* WCAG 2.1 AAA Accessibility Styles */
+    :root {
+      --base-font-size: 19px;
+    }
+    html {
+      font-size: var(--base-font-size);
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease, font-size 0.2s ease;
+    }
+    
+    /* High contrast focus ring for motor and visual impairment */
+    *:focus-visible {
+      outline: 4px solid #E65100 !important;
+      outline-offset: 4px !important;
+    }
+
+    /* Senior Mode overrides */
+    body.mode-senior {
+      background-color: #FAF6ED;
+      color: #111827;
+      font-size: 1.15rem;
+    }
+    body.mode-senior .interactive-card {
+      border: 3px solid #1F2937;
+      box-shadow: 0 6px 0 #1F2937;
+    }
+    body.mode-senior .btn-main {
+      border: 3px solid #111827;
+      box-shadow: 0 4px 0 #111827;
+    }
+
+    /* Kids Mode overrides */
+    body.mode-kids {
+      background-color: #F0FDF4;
+      color: #064E3B;
+      font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", cursive, sans-serif;
+    }
+    body.mode-kids .interactive-card {
+      border: 3px solid #34D399;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 0 #10B981;
+    }
+    body.mode-kids .btn-main {
+      border-radius: 9999px;
+      box-shadow: 0 6px 0 #059669;
+    }
+
+    /* Standard Mode */
+    body.mode-standard {
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
+
+    /* Pulse animation for SOS */
+    @keyframes sosPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(220, 38, 38, 0); }
+    }
+    .sos-btn {
+      animation: sosPulse 2.5s infinite;
+    }
+
+    /* Audio wave animation indicator */
+    .talking-wave {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .talking-wave span {
+      width: 4px;
+      height: 16px;
+      background: currentColor;
+      animation: wave 1s infinite ease-in-out;
+    }
+    .talking-wave span:nth-child(2) { animation-delay: 0.2s; height: 24px; }
+    .talking-wave span:nth-child(3) { animation-delay: 0.4s; height: 12px; }
+    @keyframes wave {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+  </style>
+</head>
+<body class="mode-senior min-h-screen pb-24 text-slate-900">
+
+  <!-- TOP ACCESSIBILITY TOOLBAR & NAVBAR -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-md border-b-2 border-slate-300">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div id="brand-icon" class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-sm">
+          <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+        <div>
+          <h1 id="brand-title" class="font-bold text-xl md:text-2xl tracking-tight text-slate-900">
+            Công Nghệ Cho Mọi Người
+          </h1>
+          <p id="brand-subtitle" class="text-xs md:text-sm text-slate-600 font-medium">
+            Học Dễ Dàng • An Toàn • Đạt Chuẩn WCAG AAA
+          </p>
+        </div>
+      </div>
+
+      <!-- Mode Switcher (Senior / Kids / Standard) -->
+      <div class="flex items-center bg-slate-100 p-1.5 rounded-2xl border-2 border-slate-300 gap-1" role="radiogroup" aria-label="Chọn chế độ sử dụng">
+        <button id="btn-mode-senior" onclick="setMode('senior')" class="px-3 py-2 rounded-xl font-bold flex items-center gap-2 bg-amber-500 text-white shadow min-h-[48px] text-sm md:text-base focus:ring-4" aria-checked="true" role="radio">
+          <i class="fa-solid fa-person-cane text-lg"></i>
+          <span>Lão Ông / Bà</span>
+        </button>
+        <button id="btn-mode-kids" onclick="setMode('kids')" class="px-3 py-2 rounded-xl font-bold flex items-center gap-2 text-slate-700 hover:bg-slate-200 min-h-[48px] text-sm md:text-base focus:ring-4" aria-checked="false" role="radio">
+          <i class="fa-solid fa-child-reaching text-lg text-emerald-600"></i>
+          <span>Bé Khám Phá</span>
+        </button>
+        <button id="btn-mode-standard" onclick="setMode('standard')" class="px-3 py-2 rounded-xl font-bold flex items-center gap-2 text-slate-700 hover:bg-slate-200 min-h-[48px] text-sm md:text-base focus:ring-4" aria-checked="false" role="radio">
+          <i class="fa-solid fa-users text-lg text-blue-600"></i>
+          <span>Gia Đình</span>
+        </button>
+      </div>
+
+      <!-- Quick Accessibility Controls -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <!-- Font Size Controls -->
+        <div class="flex items-center bg-white border-2 border-slate-300 rounded-xl overflow-hidden shadow-sm" title="Điều chỉnh cỡ chữ">
+          <button onclick="changeFontSize(-2)" class="px-3 py-2 min-h-[48px] min-w-[48px] hover:bg-slate-100 font-bold text-slate-700 focus:outline-none" aria-label="Giảm kích thước chữ">
+            <span class="text-sm font-black">A-</span>
+          </button>
+          <button onclick="changeFontSize(0)" class="px-3 py-2 min-h-[48px] min-w-[48px] hover:bg-slate-100 font-bold text-slate-700 border-x border-slate-200 text-base" aria-label="Kích thước chữ mặc định">
+            A
+          </button>
+          <button onclick="changeFontSize(2)" class="px-3 py-2 min-h-[48px] min-w-[48px] hover:bg-slate-100 font-bold text-slate-700 focus:outline-none" aria-label="Tăng kích thước chữ">
+            <span class="text-lg font-black">A+</span>
+          </button>
+        </div>
+
+        <!-- Text To Speech Global Toggle -->
+        <button id="btn-read-page" onclick="toggleReadPage()" class="px-3 py-2 min-h-[48px] bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow flex items-center gap-2 focus:ring-4" aria-label="Đọc to nội dung trang web">
+          <i id="read-page-icon" class="fa-solid fa-volume-high"></i>
+          <span id="read-page-text" class="text-sm md:text-base">Đọc Trang</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Sub-navigation anchor links -->
+    <nav class="bg-slate-50 border-t border-slate-200 px-4 py-2" aria-label="Điều hướng chính">
+      <div class="max-w-7xl mx-auto flex items-center justify-start md:justify-center gap-3 overflow-x-auto text-sm md:text-base font-bold">
+        <a href="#learning-hub" class="px-3 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-graduation-cap text-indigo-600"></i> Góc Học Tập
+        </a>
+        <a href="#ai-sandbox" class="px-3 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-robot text-purple-600"></i> AI Trợ Lý Thân Thiện
+        </a>
+        <a href="#practice-zone" class="px-3 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-gamepad text-emerald-600"></i> Trò Chơi Kỹ Năng
+        </a>
+        <a href="#score-board" class="px-3 py-2 rounded-lg hover:bg-slate-200 whitespace-nowrap text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-award text-amber-500"></i> Huy Hiệu (<span id="badge-count">3</span>)
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BANNER / WELCOME HERO -->
+  <section class="max-w-7xl mx-auto px-4 mt-6">
+    <div id="hero-banner" class="rounded-3xl p-6 md:p-8 bg-gradient-to-r from-amber-100 via-orange-50 to-amber-50 border-4 border-amber-300 shadow-lg relative overflow-hidden">
+      <div class="relative z-10 max-w-3xl">
+        <span id="hero-tag" class="inline-flex items-center gap-2 bg-amber-500 text-white px-3 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-3">
+          <i class="fa-solid fa-sun"></i> Dành riêng cho Lão Ông, Lão Bà
+        </span>
+        <h2 id="hero-title" class="text-2xl md:text-4xl font-extrabold text-slate-900 leading-tight mb-3">
+          Không Sợ Công Nghệ, Cùng Nhau Khám Phá!
+        </h2>
+        <p id="hero-desc" class="text-base md:text-xl text-slate-700 font-medium mb-6">
+          Chữ to, hướng dẫn chậm rãi bằng giọng đọc tiếng Việt, thực hành an toàn không sợ bấm nhầm làm hỏng máy.
+        </p>
+
+        <!-- Search with Voice recognition -->
+        <div class="bg-white p-2 rounded-2xl border-3 border-amber-400 shadow-md flex items-center gap-2 max-w-xl">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 pl-3 text-lg"></i>
+          <input id="search-input" type="text" placeholder="Tìm bài học (Ví dụ: Gọi Zalo, Chụp ảnh, AI...)" class="w-full text-base md:text-lg text-slate-800 font-semibold focus:outline-none" oninput="handleSearch(this.value)" />
+          <button onclick="startVoiceSearch()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl flex items-center gap-2 min-h-[44px]" title="Tìm bằng giọng nói">
+            <i class="fa-solid fa-microphone"></i>
+            <span class="hidden sm:inline">Nói</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Decorative Avatar Icon -->
+      <div class="hidden md:flex absolute right-6 bottom-4 items-center justify-center opacity-90 pointer-events-none text-9xl text-amber-200/80">
+        <i id="hero-bg-icon" class="fa-solid fa-hand-holding-heart"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 mt-8 space-y-12">
+
+    <!-- 1. GÓC HỌC TẬP (INTERACTIVE LEARNING HUB) -->
+    <section id="learning-hub" class="scroll-mt-32">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <h3 class="text-2xl md:text-3xl font-black text-slate-900">Góc Học Tập Đa Thế Hệ</h3>
+          </div>
+          <p class="text-base md:text-lg text-slate-600 mt-1 font-medium">Chọn một bài học dưới đây để bắt đầu làm quen từng bước một:</p>
+        </div>
+        
+        <!-- Filter Tabs for Levels -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2" role="tablist">
+          <button onclick="filterLessons('all')" class="lesson-tab active px-4 py-2.5 rounded-xl font-bold bg-indigo-600 text-white border-2 border-indigo-700 min-h-[48px] text-sm md:text-base">
+            Tất Cả
+          </button>
+          <button onclick="filterLessons('level1')" class="lesson-tab px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 border-2 border-slate-300 hover:bg-slate-100 min-h-[48px] text-sm md:text-base">
+            1. Nhập Môn Cơ Bản
+          </button>
+          <button onclick="filterLessons('level2')" class="lesson-tab px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 border-2 border-slate-300 hover:bg-slate-100 min-h-[48px] text-sm md:text-base">
+            2. Làm Quen Ứng Dụng
+          </button>
+          <button onclick="filterLessons('level3')" class="lesson-tab px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 border-2 border-slate-300 hover:bg-slate-100 min-h-[48px] text-sm md:text-base">
+            3. AI & Bảo Mật
+          </button>
+        </div>
+      </div>
+
+      <!-- Lessons Grid -->
+      <div id="lessons-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Lessons rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 2. GÓC AI TRỢ LÝ THÂN THIỆN (FRIENDLY AI ASSISTANT SANDBOX) -->
+    <section id="ai-sandbox" class="scroll-mt-32">
+      <div class="rounded-3xl bg-white border-4 border-purple-300 p-6 md:p-8 shadow-xl">
+        <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-purple-100 pb-5">
+          <div class="flex items-center gap-4">
+            <div id="ai-avatar-box" class="w-14 h-14 rounded-2xl bg-purple-600 text-white flex items-center justify-center text-3xl shadow-md">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 id="ai-assistant-name" class="text-2xl md:text-3xl font-extrabold text-slate-900">Ông Bụt Công Nghệ</h3>
+                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Trực tuyến
+                </span>
+              </div>
+              <p id="ai-assistant-desc" class="text-sm md:text-base text-slate-600 font-medium">
+                Hỏi bất cứ điều gì, Bụt sẽ giải thích thật ngắn gọn và từ tốn!
+              </p>
+            </div>
+          </div>
+          
+          <button onclick="clearChat()" class="px-3 py-2 text-slate-500 hover:text-slate-800 text-sm font-bold flex items-center gap-2 border border-slate-300 rounded-lg hover:bg-slate-100 min-h-[44px]">
+            <i class="fa-solid fa-arrow-rotate-right"></i> Làm mới hội thoại
+          </button>
+        </div>
+
+        <!-- 1-Click Prompt suggestions -->
+        <div class="my-4">
+          <p class="text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb text-amber-500"></i> Bấm để hỏi nhanh:
+          </p>
+          <div id="prompt-pills" class="flex flex-wrap gap-2">
+            <!-- Dynamic pills based on mode -->
+          </div>
+        </div>
+
+        <!-- Chat messages container -->
+        <div id="chat-messages" class="h-80 overflow-y-auto space-y-4 p-4 bg-purple-50/50 rounded-2xl border-2 border-purple-200">
+          <!-- Initial bot greeting -->
+        </div>
+
+        <!-- Chat input form -->
+        <form onsubmit="handleSendChat(event)" class="mt-4 flex gap-2">
+          <input id="chat-input" type="text" placeholder="Nhập câu hỏi của bạn vào đây..." class="flex-1 px-4 py-3 text-base md:text-lg font-semibold bg-white border-3 border-purple-300 rounded-2xl focus:outline-none focus:border-purple-600" />
+          
+          <button type="button" onclick="startChatVoiceInput()" class="px-4 py-3 bg-purple-100 hover:bg-purple-200 text-purple-800 font-bold rounded-2xl border-2 border-purple-300 flex items-center gap-2 min-h-[48px]" title="Nói câu hỏi">
+            <i class="fa-solid fa-microphone text-lg text-purple-700"></i>
+            <span class="hidden sm:inline">Nói</span>
+          </button>
+
+          <button type="submit" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold text-base md:text-lg rounded-2xl shadow-md flex items-center gap-2 min-h-[48px]">
+            <span>Gửi</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3. GÓC THỰC HÀNH & TRÒ CHƠI KỸ NĂNG (GAMIFIED PRACTICE ZONE) -->
+    <section id="practice-zone" class="scroll-mt-32">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl">
+              <i class="fa-solid fa-gamepad"></i>
+            </span>
+            <h3 class="text-2xl md:text-3xl font-black text-slate-900">Góc Thực Hành & Trò Chơi Kỹ Năng</h3>
+          </div>
+          <p class="text-base md:text-lg text-slate-600 mt-1 font-medium">Học đi đôi với hành! Tập bấm chính xác, nhận diện lừa đảo và tích điểm huy hiệu:</p>
+        </div>
+
+        <!-- Current Score & Star Display -->
+        <div id="score-board" class="flex items-center gap-3 bg-amber-100 border-3 border-amber-400 px-5 py-2.5 rounded-2xl shadow">
+          <div class="text-amber-600 text-3xl">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div>
+            <div class="text-xs uppercase font-extrabold text-amber-800">Điểm Tích Lũy</div>
+            <div class="text-2xl font-black text-amber-900 leading-none">
+              <span id="player-score">150</span> Điểm
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practice Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Game 1: Motor & Precision Training (Chạm & Vuốt) -->
+        <div class="interactive-card bg-white rounded-3xl p-6 border-3 border-slate-300 shadow-md">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center text-lg">
+                <i class="fa-solid fa-hand-pointer"></i>
+              </span>
+              <div>
+                <h4 class="font-bold text-xl text-slate-900">Luyện Tập Chạm & Bấm Chính Xác</h4>
+                <p class="text-sm text-slate-500">Tập phản xạ tay và tự tin không sợ bấm trượt</p>
+              </div>
+            </div>
+            <button onclick="readText('Trò chơi luyện tập chạm và bấm chính xác. Hãy bấm vào các nút tròn xuất hiện trên màn hình để ghi điểm.')" class="p-2 text-slate-400 hover:text-slate-700" title="Đọc hướng dẫn">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Game Canvas Area -->
+          <div id="touch-game-arena" class="relative w-full h-64 bg-slate-100 rounded-2xl border-2 border-dashed border-slate-400 flex items-center justify-center overflow-hidden select-none">
+            <div id="touch-game-start-view" class="text-center p-4">
+              <i class="fa-solid fa-bullseye text-5xl text-orange-500 mb-3 block"></i>
+              <p class="text-base font-bold text-slate-700 mb-3">Nhấn nút bên dưới để bắt đầu thử thách chạm 5 mục tiêu</p>
+              <button onclick="startTouchGame()" class="btn-main px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-extrabold rounded-2xl text-lg shadow-md min-h-[48px]">
+                Bắt Đầu Luyện Chạm
+              </button>
+            </div>
+            <div id="touch-target" class="hidden absolute w-16 h-16 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xl shadow-xl cursor-pointer transform transition-transform active:scale-95" onclick="hitTarget(event)">
+              <i class="fa-solid fa-check"></i>
+            </div>
+          </div>
+          <div class="mt-3 flex justify-between items-center text-sm font-bold text-slate-600">
+            <span id="touch-game-status">Sẵn sàng thử thách!</span>
+            <span id="touch-game-counter">Mục tiêu: 0/5</span>
+          </div>
+        </div>
+
+        <!-- Game 2: Scam Recognition Quiz (Nhận Biết Lừa Đảo / Trắc Nghiệm An Toàn) -->
+        <div class="interactive-card bg-white rounded-3xl p-6 border-3 border-slate-300 shadow-md">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-rose-600 text-white flex items-center justify-center text-lg">
+                <i class="fa-solid fa-shield-halved"></i>
+              </span>
+              <div>
+                <h4 class="font-bold text-xl text-slate-900">Kính Lúp: Phát Hiện Lừa Đảo Mạng</h4>
+                <p class="text-sm text-slate-500">Học cách nhận biết tin nhắn giả mạo ngân hàng, quà tặng</p>
+              </div>
+            </div>
+            <button onclick="readText('Trò chơi kính lúp nhận biết tin nhắn lừa đảo. Hãy đọc tin nhắn mẫu và chọn An Toàn hoặc Lừa Đảo.')" class="p-2 text-slate-400 hover:text-slate-700" title="Đọc hướng dẫn">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+
+          <!-- Scenario Card -->
+          <div id="quiz-container" class="bg-rose-50/70 rounded-2xl p-5 border-2 border-rose-200 min-h-[160px] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 text-rose-700 text-xs uppercase font-extrabold mb-1">
+                <i class="fa-solid fa-comment-sms"></i> <span id="quiz-sender">Tin nhắn từ số lạ: +84912...</span>
+              </div>
+              <div id="quiz-message" class="text-lg md:text-xl font-bold text-slate-800 bg-white p-4 rounded-xl border border-rose-200 shadow-sm">
+                "Chúc mừng quý khách đã trúng thưởng xe máy SH! Bấm vào link www.nhanthuong-0dong.xyz và nộp 500k phí vận chuyển để nhận quà ngay!"
+              </div>
+            </div>
+
+            <!-- Choice buttons -->
+            <div id="quiz-actions" class="mt-4 grid grid-cols-2 gap-3">
+              <button onclick="checkQuizAnswer(false)" class="btn-main px-4 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-base md:text-lg flex items-center justify-center gap-2 shadow min-h-[48px]">
+                <i class="fa-solid fa-circle-check"></i> An Toàn
+              </button>
+              <button onclick="checkQuizAnswer(true)" class="btn-main px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white font-black rounded-xl text-base md:text-lg flex items-center justify-center gap-2 shadow min-h-[48px]">
+                <i class="fa-solid fa-triangle-exclamation"></i> LỪA ĐẢO!
+              </button>
+            </div>
+
+            <!-- Feedback Alert -->
+            <div id="quiz-feedback" class="hidden mt-3 p-3 rounded-xl font-bold text-sm md:text-base"></div>
+          </div>
+
+          <div class="mt-3 flex justify-between items-center text-sm font-bold text-slate-600">
+            <span id="quiz-progress-text">Câu số: 1/4</span>
+            <button onclick="nextQuizQuestion()" class="text-indigo-600 hover:underline">Câu tiếp theo <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. DANH HIỆU & HUY HIỆU ĐÃ ĐẠT ĐƯỢC (ACHIEVEMENT BADGES) -->
+    <section class="rounded-3xl bg-slate-100 p-6 md:p-8 border-2 border-slate-300">
+      <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+        <i class="fa-solid fa-medal text-amber-500 text-2xl"></i> Bảng Vàng Thành Tích Của Bạn
+      </h3>
+      <div id="badges-container" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <!-- Badges rendered via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 5. FLOATING SOS / EMERGENCY BUTTON & MODAL -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <button onclick="openSosModal()" class="sos-btn px-5 py-4 bg-red-600 hover:bg-red-700 text-white font-black text-lg md:text-xl rounded-full shadow-2xl flex items-center gap-3 border-4 border-white focus:ring-4 focus:ring-red-400 min-h-[56px]" aria-label="Cần trợ giúp khẩn cấp">
+      <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+      <span class="tracking-wide">TRỢ GIÚP NGAY</span>
+    </button>
+  </div>
+
+  <!-- SOS MODAL -->
+  <div id="sos-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 md:p-8 border-4 border-red-600 shadow-2xl animate-in fade-in zoom-in duration-200">
+      
+      <div class="flex items-center justify-between border-b-2 border-red-200 pb-4 mb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-phone-volume"></i>
+          </span>
+          <div>
+            <h3 class="text-2xl font-black text-red-600">Trợ Giúp Khẩn Cấp (SOS)</h3>
+            <p class="text-sm font-semibold text-slate-600">Bấm số để gọi ngay hoặc nhờ người thân hỗ trợ</p>
+          </div>
+        </div>
+        <button onclick="closeSosModal()" class="w-12 h-12 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xl font-bold" aria-label="Đóng cửa sổ">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Emergency Calls -->
+      <div class="space-y-3 mb-6">
+        <a href="tel:115" class="flex items-center justify-between p-4 bg-red-50 hover:bg-red-100 border-2 border-red-300 rounded-2xl transition">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-truck-medical text-3xl text-red-600"></i>
+            <div>
+              <div class="font-black text-xl text-slate-900">115 - Cấp Cứu Y Tế</div>
+              <div class="text-sm text-slate-600 font-medium">Bấm gọi xe cứu thương ngay lập tức</div>
+            </div>
+          </div>
+          <span class="px-4 py-2 bg-red-600 text-white font-bold rounded-xl text-lg">Gọi 115</span>
+        </a>
+
+        <a href="tel:113" class="flex items-center justify-between p-4 bg-blue-50 hover:bg-blue-100 border-2 border-blue-300 rounded-2xl transition">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-shield-halved text-3xl text-blue-600"></i>
+            <div>
+              <div class="font-black text-xl text-slate-900">113 - Công An & Cứu Hộ</div>
+              <div class="text-sm text-slate-600 font-medium">Báo nguy hiểm hoặc bị lừa đảo</div>
+            </div>
+          </div>
+          <span class="px-4 py-2 bg-blue-600 text-white font-bold rounded-xl text-lg">Gọi 113</span>
+        </a>
+      </div>
+
+      <!-- Relative Phone Number (Configurable in LocalStorage) -->
+      <div class="bg-slate-50 p-4 rounded-2xl border-2 border-slate-300 mb-6">
+        <h4 class="font-extrabold text-slate-900 mb-2 flex items-center justify-between">
+          <span><i class="fa-solid fa-user-group text-emerald-600"></i> Số Điện Thoại Người Thân</span>
+          <button onclick="editRelativePhone()" class="text-xs text-indigo-600 hover:underline">Chỉnh sửa</button>
+        </h4>
+        <div class="flex items-center justify-between">
+          <div>
+            <div id="relative-name" class="font-bold text-lg text-slate-800">Con Gái (Mai Anh)</div>
+            <div id="relative-phone" class="text-base text-slate-600">0987.654.321</div>
+          </div>
+          <a id="relative-call-btn" href="tel:0987654321" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-base flex items-center gap-2">
+            <i class="fa-solid fa-phone"></i> Gọi Ngay
+          </a>
+        </div>
+      </div>
+
+      <!-- Voice Alarm -->
+      <div class="flex items-center justify-between gap-3">
+        <button onclick="playEmergencySiren()" class="flex-1 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 text-base">
+          <i class="fa-solid fa-bullhorn"></i> Phát Còi Báo Động
+        </button>
+        <button onclick="closeSosModal()" class="py-3 px-6 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-xl text-base">
+          Đóng
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LESSON DETAIL MODAL -->
+  <div id="lesson-modal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 border-4 border-indigo-500 shadow-2xl">
+      <div class="flex items-center justify-between border-b-2 border-slate-200 pb-4 mb-4">
+        <div class="flex items-center gap-3">
+          <span id="lesson-modal-icon" class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl">
+            <i class="fa-solid fa-book-open"></i>
+          </span>
+          <div>
+            <span id="lesson-modal-category" class="text-xs uppercase font-extrabold text-indigo-600">Cấp độ 1</span>
+            <h3 id="lesson-modal-title" class="text-2xl font-black text-slate-900">Tiêu đề bài học</h3>
+          </div>
+        </div>
+        <button onclick="closeLessonModal()" class="w-12 h-12 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Voice readout of lesson -->
+      <div class="mb-4 flex items-center justify-between bg-indigo-50 p-3 rounded-2xl border border-indigo-200">
+        <span class="text-sm font-bold text-indigo-900 flex items-center gap-2">
+          <i class="fa-solid fa-headphones"></i> Hỗ trợ nghe bài học:
+        </span>
+        <button id="btn-read-lesson" onclick="readCurrentLesson()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm flex items-center gap-2">
+          <i class="fa-solid fa-volume-high"></i> Đọc Bài Học Này
+        </button>
+      </div>
+
+      <!-- Step-by-step content -->
+      <div id="lesson-modal-body" class="space-y-4 text-base md:text-lg text-slate-800 font-medium">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Practice interactive mini-box inside lesson -->
+      <div id="lesson-interactive-box" class="my-6 p-4 rounded-2xl border-2 border-dashed border-indigo-300 bg-slate-50">
+        <!-- Dynamic simulation step -->
+      </div>
+
+      <!-- Completion Action -->
+      <div class="flex items-center justify-between pt-4 border-t-2 border-slate-200">
+        <button onclick="closeLessonModal()" class="px-5 py-3 rounded-xl bg-slate-200 hover:bg-slate-300 font-bold text-slate-700">
+          Đóng lại
+        </button>
+        <button id="btn-complete-lesson" onclick="completeCurrentLesson()" class="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-black text-white text-lg flex items-center gap-2 shadow-lg">
+          <i class="fa-solid fa-circle-check"></i> Đã Hiểu & Hoàn Thành (+50 Điểm)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC (WCAG AAA, Web Speech, Mode Switch, Gamification) -->
+  <script>
+    // --- STATE MANAGEMENT ---
+    let currentMode = 'senior'; // 'senior', 'kids', 'standard'
+    let currentFontSizeOffset = 0;
+    let isSpeaking = false;
+    let playerScore = parseInt(localStorage.getItem('tech_score') || '150');
+    let completedLessons = JSON.parse(localStorage.getItem('tech_completed_lessons') || '["touch_basic"]');
+    let activeLessonData = null;
+    let quizIndex = 0;
+
+    // --- LESSON DATA REPOSITORY ---
+    const LESSONS = [
+      {
+        id: "touch_basic",
+        category: "level1",
+        categoryName: "Nhập Môn Cơ Bản",
+        title: "Cách Chạm & Vuốt Màn Hình Cảm Ứng",
+        desc: "Học cách chạm ngón tay nhẹ nhàng, vuốt lên để xem thêm và vuốt xuống để quay lại.",
+        icon: "fa-fingerprint",
+        color: "bg-blue-500",
+        steps: [
+          "1. <strong>Chạm nhẹ (Tap):</strong> Dùng đầu ngón tay chạm nhẹ vào màn hình rồi nhấc lên ngay. Đừng ấn quá mạnh hay giữ quá lâu.",
+          "2. <strong>Vuốt (Swipe):</strong> Đặt ngón tay lên màn hình và lướt từ dưới lên trên để đọc tiếp tin tức phía dưới.",
+          "3. <strong>Thu phóng (Zoom):</strong> Dùng 2 ngón tay chụm lại hoặc mở rộng ra để phóng to ảnh con cháu rõ hơn."
+        ],
+        practiceType: "touch"
+      },
+      {
+        id: "keyboard_voice",
+        category: "level1",
+        categoryName: "Nhập Môn Cơ Bản",
+        title: "Nói Để Điện Thoại Tự Viết Chữ",
+        desc: "Không cần gõ từng phím nhỏ! Chỉ cần bấm vào biểu tượng Micro và nói rõ ràng.",
+        icon: "fa-microphone-lines",
+        color: "bg-indigo-500",
+        steps: [
+          "1. Khi bàn phím hiện lên, tìm biểu tượng <strong>Cây Micro nhỏ</strong> (thường ở góc dưới hoặc trên phím cách).",
+          "2. Bấm vào Micro 1 lần, bạn sẽ nghe tiếng 'Ting'.",
+          "3. Nói rõ ràng câu bạn muốn gửi, điện thoại sẽ tự động viết thành chữ tiếng Việt chính xác 100%!"
+        ],
+        practiceType: "voice"
+      },
+      {
+        id: "video_call",
+        category: "level2",
+        categoryName: "Làm Quen Ứng Dụng",
+        title: "Gọi Video Trực Tiếp Cho Con Cháu (Zalo)",
+        desc: "Thấy mặt người thân ở xa, nói chuyện thoải mái hoàn toàn miễn phí qua mạng Wifi.",
+        icon: "fa-video",
+        color: "bg-emerald-500",
+        steps: [
+          "1. Mở ứng dụng Zalo và bấm vào tên người con, cháu muốn gọi.",
+          "2. Nhìn góc trên cùng bên phải, tìm biểu tượng <strong>Máy Quay Phim</strong>.",
+          "3. Bấm vào đó và đợi người nhà bắt máy. Hãy cầm điện thoại thẳng trước mặt để họ nhìn thấy nụ cười của bạn!"
+        ],
+        practiceType: "call"
+      },
+      {
+        id: "photo_saving",
+        category: "level2",
+        categoryName: "Làm Quen Ứng Dụng",
+        title: "Chụp & Lưu Giữ Kỷ Niệm Gia Đình",
+        desc: "Cách cầm chắc máy, bấm chụp ảnh nét và tìm lại ảnh trong Bộ Sưu Tập.",
+        icon: "fa-camera",
+        color: "bg-amber-500",
+        steps: [
+          "1. Mở biểu tượng Máy Ảnh trên màn hình chính.",
+          "2. Chạm vào khuôn mặt của người trong ảnh để máy tự động lấy nét thật đẹp.",
+          "3. Bấm vào nút tròn to màu trắng ở giữa màn hình để chụp ảnh."
+        ],
+        practiceType: "camera"
+      },
+      {
+        id: "ai_intro",
+        category: "level3",
+        categoryName: "AI & Bảo Mật",
+        title: "Trí Tuệ Nhân Tạo (AI) Là Gì?",
+        desc: "AI như một người trợ lý thông thái biết trả lời mọi câu hỏi về nấu ăn, thuốc men và cuộc sống.",
+        icon: "fa-brain",
+        color: "bg-purple-600",
+        steps: [
+          "1. <strong>AI là gì?</strong> AI là chương trình máy tính học từ hàng triệu cuốn sách để giúp con người trả lời câu hỏi và giải quyết công việc.",
+          "2. <strong>Hỏi AI thế nào?</strong> Giống như nói chuyện với một người bạn: 'Hôm nay trời lạnh nên mặc gì?', 'Cách nấu món canh chua cá lóc'.",
+          "3. <strong>Lưu ý:</strong> AI rất thông minh nhưng đôi khi cũng có thể nhầm lẫn, hãy kiểm tra lại thông tin quan trọng với bác sĩ hoặc gia đình nhé!"
+        ],
+        practiceType: "ai"
+      },
+      {
+        id: "anti_scam",
+        category: "level3",
+        categoryName: "AI & Bảo Mật",
+        title: "Cảnh Giác: Nhận Biết Lừa Đảo Qua Mạng",
+        desc: "Quy tắc 3 KHÔNG: Không chuyển tiền cho người lạ, Không gửi mật khẩu mã OTP, Không bấm link lạ.",
+        icon: "fa-user-shield",
+        color: "bg-rose-600",
+        steps: [
+          "1. <strong>KHÔNG chuyển tiền:</strong> Ai gọi điện xưng là công an, tòa án, nhân viên ngân hàng dọa nạt đều là LỪA ĐẢO.",
+          "2. <strong>KHÔNG đọc mã OTP:</strong> Mã số ngân hàng gửi về điện thoại là chìa khóa két sắt của bạn, tuyệt đối không đọc cho bất kỳ ai!",
+          "3. <strong>Hỏi ý kiến:</strong> Khi thấy tin nhắn lạ, hãy đưa ngay cho con cháu hoặc người thân xem trước."
+        ],
+        practiceType: "scam"
+      }
+    ];
+
+    // --- QUIZ QUESTIONS REPOSITORY ---
+    const QUIZ_QUESTIONS = [
+      {
+        sender: "Tin nhắn SMS từ số: 0918.423.xxx",
+        message: "Chúc mừng quý khách đã trúng thưởng xe máy SH! Bấm vào link www.nhanthuong-0dong.xyz và nộp 500k phí vận chuyển để nhận quà ngay!",
+        isScam: true,
+        explain: "CHÍNH XÁC! Đây là lừa đảo. Không có giải thưởng nào bắt nộp phí trước và đường link rất lạ (.xyz)."
+      },
+      {
+        sender: "Zalo: Con Gái (Mai Anh)",
+        message: "Mẹ ơi, tối nay con đi làm về muộn khoảng 7h30, mẹ với bố cứ ăn cơm trước nhé ạ!",
+        isScam: false,
+        explain: "ĐÚNG RỒI! Đây là tin nhắn bình thường và an toàn từ người thân trong gia đình."
+      },
+      {
+        sender: "Cuộc gọi / Tin nhắn: 'Cán bộ điều tra Công An'",
+        message: "Tài khoản của ông/bà đang liên quan đến đường dây rửa tiền xuyên quốc gia. Yêu cầu chuyển toàn bộ tiền tiết kiệm vào số tài khoản tạm giữ!",
+        isScam: true,
+        explain: "CHÍNH XÁC! Công an và cơ quan nhà nước KHÔNG BAO GIỜ làm việc qua điện thoại hay yêu cầu chuyển tiền."
+      },
+      {
+        sender: "Thông báo từ ứng dụng VNeID chính thức",
+        message: "Hồ sơ định danh điện tử mức 2 của công dân đã được phê duyệt. Vui lòng mở ứng dụng để kiểm tra thông tin.",
+        isScam: false,
+        explain: "ĐÚNG! Đây là thông báo hệ thống chính thống, không yêu cầu nạp tiền hay cung cấp mật khẩu."
+      }
+    ];
+
+    // --- BADGES LIST ---
+    const BADGES = [
+      { id: "newbie", name: "Người Tiên Phong", icon: "fa-seedling", color: "text-emerald-500", desc: "Bắt đầu bài học đầu tiên", unlocked: true },
+      { id: "sharp_eye", name: "Mắt Tinh Tường", icon: "fa-shield-halved", color: "text-blue-500", desc: "Phát hiện 3 tin nhắn lừa đảo", unlocked: true },
+      { id: "quick_finger", name: "Ngón Tay Nhanh Nhẹn", icon: "fa-bolt", color: "text-amber-500", desc: "Chạm trúng 5 mục tiêu liên tiếp", unlocked: true },
+      { id: "ai_explorer", name: "Bạn Của Robot AI", icon: "fa-robot", color: "text-purple-500", desc: "Trò chuyện thân thiện với AI", unlocked: false }
+    ];
+
+    // --- WEB AUDIO API SOUND SYNTHESIS (Zero external file dependencies) ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playBeep(freq = 600, duration = 0.15, type = 'sine') {
+      try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn("Audio not permitted", e);
+      }
+    }
+
+    function playSuccessChime() {
+      playBeep(523.25, 0.1, 'triangle'); // C5
+      setTimeout(() => playBeep(659.25, 0.1, 'triangle'), 100); // E5
+      setTimeout(() => playBeep(783.99, 0.25, 'triangle'), 200); // G5
+    }
+
+    function playAlertChime() {
+      playBeep(300, 0.2, 'sawtooth');
+      setTimeout(() => playBeep(220, 0.3, 'sawtooth'), 180);
+    }
+
+    function playEmergencySiren() {
+      playBeep(880, 0.4, 'sawtooth');
+      setTimeout(() => playBeep(660, 0.4, 'sawtooth'), 400);
+      setTimeout(() => playBeep(880, 0.4, 'sawtooth'), 800);
+      speakText("Chú ý, đang phát tín hiệu trợ giúp khẩn cấp!");
+    }
+
+    // --- WEB SPEECH SYNTHESIS (TTS) ---
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt chưa hỗ trợ phát âm thanh trực tiếp.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'vi-VN';
+      utterance.rate = currentMode === 'senior' ? 0.85 : 0.95; // Slower cadence for seniors
+      utterance.pitch = currentMode === 'kids' ? 1.2 : 1.0;
+
+      // Select Vietnamese voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const viVoice = voices.find(v => v.lang.includes('vi') || v.lang.includes('VN'));
+      if (viVoice) utterance.voice = viVoice;
+
+      utterance.onstart = () => {
+        isSpeaking = true;
+        updateTtsUi(true);
+      };
+      utterance.onend = () => {
+        isSpeaking = false;
+        updateTtsUi(false);
+      };
+      utterance.onerror = () => {
+        isSpeaking = false;
+        updateTtsUi(false);
+      };
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function readText(txt) {
+      speakText(txt);
+    }
+
+    function updateTtsUi(speaking) {
+      const btn = document.getElementById('btn-read-page');
+      const icon = document.getElementById('read-page-icon');
+      const text = document.getElementById('read-page-text');
+      if (speaking) {
+        btn.classList.replace('bg-sky-600', 'bg-rose-600');
+        icon.className = 'fa-solid fa-stop animate-pulse';
+        text.innerText = 'Dừng Đọc';
+      } else {
+        btn.classList.replace('bg-rose-600', 'bg-sky-600');
+        icon.className = 'fa-solid fa-volume-high';
+        text.innerText = 'Đọc Trang';
+      }
+    }
+
+    function toggleReadPage() {
+      if (isSpeaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        updateTtsUi(false);
+      } else {
+        let textToRead = "";
+        if (currentMode === 'senior') {
+          textToRead = "Chào mừng quý cụ, ông bà đến với trang Công Nghệ Cho Mọi Người. Quý vị có thể chọn góc học tập, hỏi trợ lý Bụt AI, hoặc thử tài nhận biết tin nhắn lừa đảo. Bất cứ lúc nào cần trợ giúp, hãy bấm nút đỏ lớn ở góc màn hình.";
+        } else if (currentMode === 'kids') {
+          textToRead = "Chào bạn nhỏ khám phá! Hãy cùng Robot học cách dùng máy tính thông minh, không bị nghiện game và nhận thật nhiều huy hiệu hiệp sĩ mạng nhé!";
+        } else {
+          textToRead = "Chào mừng bạn đến với nền tảng công nghệ cho gia đình đa thế hệ.";
+        }
+        speakText(textToRead);
+      }
+    }
+
+    // --- FONT SIZE CONTROLLER (WCAG AAA) ---
+    function changeFontSize(delta) {
+      if (delta === 0) {
+        currentFontSizeOffset = 0;
+      } else {
+        currentFontSizeOffset = Math.max(-2, Math.min(6, currentFontSizeOffset + delta));
+      }
+      const newBase = 19 + currentFontSizeOffset;
+      document.documentElement.style.setProperty('--base-font-size', `${newBase}px`);
+      playBeep(700, 0.05);
+    }
+
+    // --- MODE SWITCHER (Senior / Kids / Standard) ---
+    function setMode(mode) {
+      currentMode = mode;
+      document.body.className = `mode-${mode} min-h-screen pb-24 text-slate-900`;
+
+      // Update button visual states
+      const modes = ['senior', 'kids', 'standard'];
+      modes.forEach(m => {
+        const btn = document.getElementById(`btn-mode-${m}`);
+        const isActive = m === mode;
+        btn.setAttribute('aria-checked', isActive);
+        if (isActive) {
+          btn.className = `px-3 py-2 rounded-xl font-bold flex items-center gap-2 text-white shadow min-h-[48px] text-sm md:text-base focus:ring-4 ${
+            mode === 'senior' ? 'bg-amber-600' : mode === 'kids' ? 'bg-emerald-600' : 'bg-blue-600'
+          }`;
+        } else {
+          btn.className = "px-3 py-2 rounded-xl font-bold flex items-center gap-2 text-slate-700 hover:bg-slate-200 min-h-[48px] text-sm md:text-base focus:ring-4";
+        }
+      });
+
+      // Update theme texts & colors
+      const heroTag = document.getElementById('hero-tag');
+      const heroTitle = document.getElementById('hero-title');
+      const heroDesc = document.getElementById('hero-desc');
+      const brandTitle = document.getElementById('brand-title');
+      const brandIcon = document.getElementById('brand-icon');
+      const aiName = document.getElementById('ai-assistant-name');
+      const aiDesc = document.getElementById('ai-assistant-desc');
+      const aiAvatar = document.getElementById('ai-avatar-box');
+
+      if (mode === 'senior') {
+        heroTag.innerHTML = '<i class="fa-solid fa-sun"></i> Dành riêng cho Lão Ông, Lão Bà';
+        heroTitle.innerText = 'Không Sợ Công Nghệ, Cùng Nhau Khám Phá!';
+        heroDesc.innerText = 'Chữ to, hướng dẫn chậm rãi bằng giọng đọc tiếng Việt, thực hành an toàn không sợ bấm nhầm làm hỏng máy.';
+        brandTitle.innerText = 'Công Nghệ Cho Mọi Người';
+        brandIcon.className = "w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-sm";
+        aiName.innerText = "Ông Bụt Công Nghệ";
+        aiDesc.innerText = "Hỏi bất cứ điều gì, Bụt sẽ giải thích thật ngắn gọn và từ tốn!";
+        aiAvatar.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i>';
+        aiAvatar.className = "w-14 h-14 rounded-2xl bg-amber-600 text-white flex items-center justify-center text-3xl shadow-md";
+      } else if (mode === 'kids') {
+        heroTag.innerHTML = '<i class="fa-solid fa-rocket"></i> Vùng Đất Khám Phá Của Bé';
+        heroTitle.innerText = 'Chinh Phục Thế Giới Số Thật Vui!';
+        heroDesc.innerText = 'Học kỹ năng máy tính, làm quen với AI thông minh, giải đố an toàn và sưu tầm thật nhiều huy hiệu!';
+        brandTitle.innerText = 'Bé Học Công Nghệ Vui';
+        brandIcon.className = "w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl shadow-sm";
+        aiName.innerText = "Robot Bạn Nhỏ BoBo";
+        aiDesc.innerText = "Tớ là BoBo! Tớ sẵn sàng giải đáp 1001 câu hỏi vì sao của cậu!";
+        aiAvatar.innerHTML = '<i class="fa-solid fa-robot"></i>';
+        aiAvatar.className = "w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-3xl shadow-md";
+      } else {
+        heroTag.innerHTML = '<i class="fa-solid fa-users"></i> Dành cho cả gia đình';
+        heroTitle.innerText = 'Cầu Nối Công Nghệ Mọi Thế Hệ';
+        heroDesc.innerText = 'Kiến thức số dễ hiểu, an toàn và trực quan giúp con cháu và ông bà cùng gắn kết.';
+        brandTitle.innerText = 'Công Nghệ Gia Đình';
+        brandIcon.className = "w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl shadow-sm";
+        aiName.innerText = "Trợ Lý Gia Đình AI";
+        aiDesc.innerText = "Hỗ trợ giải đáp thắc mắc kỹ thuật và kỹ năng sử dụng công nghệ an toàn.";
+        aiAvatar.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
+        aiAvatar.className = "w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-3xl shadow-md";
+      }
+
+      renderPills();
+      renderChatGreeting();
+      renderLessons();
+      playBeep(550, 0.08);
+    }
+
+    // --- RENDER LESSONS ---
+    function renderLessons(filter = 'all', searchQuery = '') {
+      const grid = document.getElementById('lessons-grid');
+      grid.innerHTML = '';
+
+      let list = LESSONS;
+      if (filter !== 'all') {
+        list = list.filter(l => l.category === filter);
+      }
+      if (searchQuery.trim() !== '') {
+        const q = searchQuery.toLowerCase();
+        list = list.filter(l => l.title.toLowerCase().includes(q) || l.desc.toLowerCase().includes(q));
+      }
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500">
+            <i class="fa-solid fa-search text-4xl mb-2 text-slate-300"></i>
+            <p class="text-lg font-bold">Không tìm thấy bài học nào phù hợp.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach(lesson => {
+        const isDone = completedLessons.includes(lesson.id);
+        const card = document.createElement('div');
+        card.className = "interactive-card bg-white rounded-3xl p-6 border-3 border-slate-300 shadow-md flex flex-col justify-between transition hover:-translate-y-1";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="w-12 h-12 rounded-2xl ${lesson.color} text-white flex items-center justify-center text-2xl shadow">
+                <i class="fa-solid ${lesson.icon}"></i>
+              </span>
+              ${isDone ? `
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1.5 rounded-full flex items-center gap-1 border border-emerald-300">
+                  <i class="fa-solid fa-circle-check"></i> Đã hoàn thành
+                </span>
+              ` : `
+                <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-full border border-slate-300">
+                  Chưa học
+                </span>
+              `}
+            </div>
+            <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-1">${lesson.categoryName}</div>
+            <h4 class="text-xl font-black text-slate-900 mb-2 leading-snug">${lesson.title}</h4>
+            <p class="text-base text-slate-600 font-medium mb-4">${lesson.desc}</p>
+          </div>
+
+          <div class="pt-4 border-t border-slate-200 flex items-center justify-between gap-2">
+            <button onclick="readText('${lesson.title}. ${lesson.desc}')" class="p-3 text-slate-500 hover:text-slate-800 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-xl hover:bg-slate-100" title="Nghe đọc tóm tắt bài">
+              <i class="fa-solid fa-volume-high text-xl"></i>
+            </button>
+            <button onclick="openLessonModal('${lesson.id}')" class="btn-main flex-1 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-base rounded-2xl flex items-center justify-center gap-2 shadow min-h-[48px]">
+              <span>${isDone ? 'Xem Lại' : 'Bắt Đầu Học'}</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterLessons(lvl) {
+      document.querySelectorAll('.lesson-tab').forEach(t => {
+        t.className = "lesson-tab px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 border-2 border-slate-300 hover:bg-slate-100 min-h-[48px] text-sm md:text-base";
+      });
+      event.target.className = "lesson-tab active px-4 py-2.5 rounded-xl font-bold bg-indigo-600 text-white border-2 border-indigo-700 min-h-[48px] text-sm md:text-base";
+      renderLessons(lvl);
+      playBeep(600, 0.05);
+    }
+
+    function handleSearch(q) {
+      renderLessons('all', q);
+    }
+
+    function startVoiceSearch() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        speakText("Tính năng nhận diện giọng nói chưa sẵn sàng trên trình duyệt này. Quý vị vui lòng gõ phím vào ô tìm kiếm.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'vi-VN';
+      recognition.start();
+      speakText("Đang lắng nghe, xin nói từ khóa cần tìm...");
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        document.getElementById('search-input').value = text;
+        renderLessons('all', text);
+        speakText("Đang tìm bài học: " + text);
+      };
+      recognition.onerror = () => {
+        speakText("Chưa nghe rõ, vui lòng bấm nói lại.");
+      };
+    }
+
+    // --- LESSON MODAL DETAILS ---
+    function openLessonModal(id) {
+      const lesson = LESSONS.find(l => l.id === id);
+      if (!lesson) return;
+      activeLessonData = lesson;
+
+      document.getElementById('lesson-modal-title').innerText = lesson.title;
+      document.getElementById('lesson-modal-category').innerText = lesson.categoryName;
+      document.getElementById('lesson-modal-icon').innerHTML = `<i class="fa-solid ${lesson.icon}"></i>`;
+
+      const body = document.getElementById('lesson-modal-body');
+      body.innerHTML = `
+        <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200 mb-4">
+          <p class="font-bold text-slate-800">${lesson.desc}</p>
+        </div>
+        <div class="space-y-3">
+          ${lesson.steps.map(step => `
+            <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-sm flex items-start gap-3">
+              <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+              <div>${step}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // Interactive simulation box inside modal
+      const simBox = document.getElementById('lesson-interactive-box');
+      if (lesson.id === 'video_call') {
+        simBox.innerHTML = `
+          <div class="text-center">
+            <p class="font-bold text-slate-800 mb-2">Thực hành gọi thử:</p>
+            <div class="inline-flex items-center gap-3 bg-white p-3 rounded-2xl border-2 border-slate-300 shadow">
+              <div class="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xl font-bold">Z</div>
+              <div class="text-left">
+                <div class="font-bold text-slate-900">Cháu Đích Tôn (Bé Bin)</div>
+                <div class="text-xs text-emerald-600 font-bold">Đang online</div>
+              </div>
+              <button onclick="simulateCallDone()" class="ml-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl flex items-center gap-2">
+                <i class="fa-solid fa-video"></i> Bấm Gọi
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (lesson.id === 'touch_basic') {
+        simBox.innerHTML = `
+          <div class="text-center">
+            <p class="font-bold text-slate-800 mb-2">Thực hành chạm vào ngôi sao vàng:</p>
+            <button onclick="simulateTouchDone(this)" class="px-6 py-4 bg-amber-400 hover:bg-amber-500 text-amber-950 font-black rounded-2xl shadow-lg text-lg flex items-center gap-3 mx-auto">
+              <i class="fa-solid fa-star text-2xl"></i> Chạm Vào Tôi
+            </button>
+          </div>
+        `;
+      } else {
+        simBox.innerHTML = `
+          <div class="text-center text-slate-600 font-medium">
+            <i class="fa-solid fa-lightbulb text-amber-500 text-2xl mb-1"></i>
+            <p>Hãy đọc kỹ từng bước hướng dẫn ở trên trước khi bấm Hoàn Thành bài học nhé!</p>
+          </div>
+        `;
+      }
+
+      document.getElementById('lesson-modal').classList.remove('hidden');
+      document.getElementById('lesson-modal').classList.add('flex');
+      playBeep(500, 0.08);
+    }
+
+    function closeLessonModal() {
+      document.getElementById('lesson-modal').classList.add('hidden');
+      document.getElementById('lesson-modal').classList.remove('flex');
+      window.speechSynthesis.cancel();
+    }
+
+    function readCurrentLesson() {
+      if (!activeLessonData) return;
+      const plainSteps = activeLessonData.steps.map(s => s.replace(/<[^>]*>/g, '')).join('. ');
+      speakText(`${activeLessonData.title}. ${activeLessonData.desc}. Các bước thực hiện: ${plainSteps}`);
+    }
+
+    function completeCurrentLesson() {
+      if (!activeLessonData) return;
+      if (!completedLessons.includes(activeLessonData.id)) {
+        completedLessons.push(activeLessonData.id);
+        localStorage.setItem('tech_completed_lessons', JSON.stringify(completedLessons));
+        addScore(50);
+        triggerConfetti();
+      }
+      playSuccessChime();
+      closeLessonModal();
+      renderLessons();
+      updateBadgeCounts();
+    }
+
+    function simulateCallDone() {
+      playSuccessChime();
+      speakText("Tuyệt vời! Bạn vừa thực hiện thành công thao tác bấm nút gọi video.");
+    }
+
+    function simulateTouchDone(btn) {
+      playSuccessChime();
+      btn.innerHTML = '<i class="fa-solid fa-check text-2xl"></i> Rất Giỏi!';
+      btn.className = "px-6 py-4 bg-emerald-500 text-white font-black rounded-2xl shadow-lg text-lg flex items-center gap-3 mx-auto";
+    }
+
+    // --- AI CHATBOT SANDBOX ---
+    const AI_RESPONSES = {
+      senior: {
+        "zalo": "Dạ thưa cụ, để gọi Zalo cho con cháu: Cụ mở ứng dụng Zalo, chọn tên con cháu, rồi nhìn góc trên bên phải bấm vào biểu tượng Máy Quay Phim là gọi được ngay ạ!",
+        "scam": "Dạ thưa cụ, nếu có ai gọi bảo trúng thưởng hoặc xưng công an yêu cầu chuyển tiền, 100% là LỪA ĐẢO ạ! Cụ cứ dập máy ngay và kể lại cho con cháu nghe nhé.",
+        "font": "Dạ, để chữ to hơn: Cụ bấm nút A+ ở góc trên cùng trang này. Trên điện thoại, cụ có thể vào 'Cài Đặt', chọn 'Màn Hình' rồi kéo thanh 'Cỡ Chữ' to hết cỡ là nhìn rất rõ ạ.",
+        "photo": "Dạ, để chụp màn hình: Cụ bấm cùng lúc nút Giảm Âm Lượng và nút Tắt Nguồn trong 1 giây là màn hình sẽ tự lưu lại ạ.",
+        "default": "Dạ Bụt xin nghe cụ ạ! Cụ đừng lo bấm hỏng máy nhé, hãy hỏi Bụt bất kỳ điều gì cụ còn băn khoăn về điện thoại và Zalo ạ!"
+      },
+      kids: {
+        "sky": "Chào cậu! Bầu trời có màu xanh vì ánh sáng mặt trời chiếu vào bầu khí quyển của Trái Đất, và màu xanh dương bị tán xạ đi khắp mọi hướng nhiều nhất!",
+        "ai": "AI giống như một bộ não máy tính siêu nhanh, được đọc hàng triệu cuốn sách để giúp các bạn nhỏ giải toán, vẽ tranh và tìm hiểu thế giới đấy!",
+        "game": "Mẹo nhỏ cho bạn thông thái: Cứ chơi game 30 phút thì nhớ đứng dậy ngắm cây xanh 5 phút để mắt sáng khỏe như đại bàng nhé!",
+        "story": "Ngày xửa ngày xưa, có một chú Robot nhỏ biết làm thơ và giúp bà cụ tưới cây mỗi chiều. Công nghệ sinh ra là để cuộc sống ấm áp hơn!",
+        "default": "BoBo đây rồi! Tớ rất vui được trò chuyện cùng cậu. Cậu muốn tớ kể chuyện hay giải đáp câu hỏi nào nào?"
+      }
+    };
+
+    function renderPills() {
+      const container = document.getElementById('prompt-pills');
+      container.innerHTML = '';
+      let pills = [];
+
+      if (currentMode === 'senior') {
+        pills = [
+          { text: "Hướng dẫn tôi gọi Zalo cho con", key: "zalo" },
+          { text: "Làm sao biết tin nhắn trúng thưởng có phải lừa đảo?", key: "scam" },
+          { text: "Cách phóng to chữ trên màn hình", key: "font" },
+          { text: "Cách chụp ảnh màn hình lưu lại", key: "photo" }
+        ];
+      } else if (currentMode === 'kids') {
+        pills = [
+          { text: "Tại sao bầu trời lại màu xanh?", key: "sky" },
+          { text: "AI hoạt động như thế nào hả bạn Robot?", key: "ai" },
+          { text: "Làm sao để chơi game không mỏi mắt?", key: "game" },
+          { text: "Kể cho em một câu chuyện vui công nghệ", key: "story" }
+        ];
+      } else {
+        pills = [
+          { text: "Làm thế nào để tạo mật khẩu an toàn?", key: "scam" },
+          { text: "Ứng dụng gọi video miễn phí tốt nhất", key: "zalo" },
+          { text: "Cách bảo vệ tài khoản ngân hàng", key: "scam" }
+        ];
+      }
+
+      pills.forEach(p => {
+        const btn = document.createElement('button');
+        btn.type = "button";
+        btn.className = "px-3.5 py-2 rounded-xl bg-purple-100 hover:bg-purple-200 text-purple-900 font-bold text-sm border border-purple-300 min-h-[44px] transition active:scale-95";
+        btn.innerText = p.text;
+        btn.onclick = () => {
+          document.getElementById('chat-input').value = p.text;
+          handleSendChat(null, p.key);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function renderChatGreeting() {
+      const container = document.getElementById('chat-messages');
+      container.innerHTML = '';
+      const greeting = currentMode === 'senior' 
+        ? "Chào cụ ạ! Con là Bụt Công Nghệ. Cụ có băn khoăn gì về điện thoại, Zalo hay cách dùng máy không, cứ hỏi con nhé!"
+        : currentMode === 'kids'
+        ? "Chào bạn nhỏ tài ba! BoBo chào cậu. Hôm nay chúng mình cùng khám phá điều kỳ diệu nào của công nghệ đây?"
+        : "Xin chào! Tôi là Trợ Lý Công Nghệ Gia Đình. Bạn cần hỗ trợ kỹ năng số nào hôm nay?";
+      
+      appendChatMessage('bot', greeting);
+    }
+
+    function appendChatMessage(sender, text) {
+      const container = document.getElementById('chat-messages');
+      const isBot = sender === 'bot';
+      const wrapper = document.createElement('div');
+      wrapper.className = `flex gap-3 ${isBot ? 'justify-start' : 'justify-end'}`;
+
+      const bubble = document.createElement('div');
+      bubble.className = `max-w-[85%] p-4 rounded-2xl shadow-sm text-base md:text-lg font-semibold ${
+        isBot 
+          ? 'bg-white text-slate-800 border-2 border-purple-200 rounded-tl-none' 
+          : 'bg-purple-600 text-white rounded-tr-none'
+      }`;
+      
+      bubble.innerHTML = `
+        <p>${text}</p>
+        ${isBot ? `
+          <button onclick="speakText('${text.replace(/'/g, "\\'")}')" class="mt-2 text-xs font-black text-purple-700 hover:text-purple-900 flex items-center gap-1.5 pt-1 border-t border-purple-100">
+            <i class="fa-solid fa-volume-high"></i> Đọc câu trả lời này
+          </button>
+        ` : ''}
+      `;
+
+      wrapper.appendChild(bubble);
+      container.appendChild(wrapper);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function handleSendChat(e, predefinedKey = null) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendChatMessage('user', text);
+      input.value = '';
+
+      // Determine response
+      setTimeout(() => {
+        let answer = "";
+        const lower = text.toLowerCase();
+        const modeBank = AI_RESPONSES[currentMode] || AI_RESPONSES.senior;
+
+        if (predefinedKey && modeBank[predefinedKey]) {
+          answer = modeBank[predefinedKey];
+        } else if (lower.includes('zalo') || lower.includes('gọi')) {
+          answer = modeBank["zalo"] || "Cụ chỉ cần mở Zalo và bấm vào biểu tượng chiếc máy quay ở góc phải là gọi được ngay ạ!";
+        } else if (lower.includes('lừa đảo') || lower.includes('tiền') || lower.includes('trúng thưởng')) {
+          answer = modeBank["scam"] || "Cảnh báo an toàn: Tuyệt đối không bấm vào đường link lạ và không gửi tiền cho người xưng là công an qua điện thoại!";
+        } else if (lower.includes('chữ') || lower.includes('to')) {
+          answer = modeBank["font"] || "Bạn có thể dùng nút A+ trên thanh công cụ để tăng cỡ chữ cho dễ đọc.";
+        } else if (lower.includes('ai') || lower.includes('robot')) {
+          answer = modeBank["ai"] || "AI là trí tuệ nhân tạo, một công cụ hữu ích học từ dữ liệu để trợ giúp con người!";
+        } else {
+          answer = modeBank["default"] || "Câu hỏi rất hay! Đừng ngại khám phá tiếp cùng trợ lý nhé!";
+        }
+
+        appendChatMessage('bot', answer);
+        playBeep(650, 0.08);
+      }, 500);
+    }
+
+    function clearChat() {
+      renderChatGreeting();
+      playBeep(450, 0.05);
+    }
+
+    function startChatVoiceInput() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        speakText("Trình duyệt chưa hỗ trợ nói trực tiếp vào ô chat.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'vi-VN';
+      recognition.start();
+      speakText("Mời bạn nói câu hỏi...");
+      recognition.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        document.getElementById('chat-input').value = text;
+        handleSendChat(null);
+      };
+    }
+
+    // --- GAME 1: TOUCH PRECISION TRAINING ---
+    let touchTargetCount = 0;
+    function startTouchGame() {
+      touchTargetCount = 0;
+      document.getElementById('touch-game-start-view').classList.add('hidden');
+      document.getElementById('touch-game-status').innerText = 'Hãy chạm vào mục tiêu tròn màu xanh!';
+      document.getElementById('touch-game-counter').innerText = 'Mục tiêu: 0/5';
+      showNextTouchTarget();
+      playBeep(600, 0.1);
+    }
+
+    function showNextTouchTarget() {
+      const target = document.getElementById('touch-target');
+      const arena = document.getElementById('touch-game-arena');
+      const maxX = arena.clientWidth - 80;
+      const maxY = arena.clientHeight - 80;
+
+      const randomX = Math.floor(Math.random() * Math.max(10, maxX));
+      const randomY = Math.floor(Math.random() * Math.max(10, maxY));
+
+      target.style.left = `${randomX}px`;
+      target.style.top = `${randomY}px`;
+      target.classList.remove('hidden');
+    }
+
+    function hitTarget(e) {
+      e.stopPropagation();
+      playSuccessChime();
+      touchTargetCount++;
+      document.getElementById('touch-game-counter').innerText = `Mục tiêu: ${touchTargetCount}/5`;
+
+      if (touchTargetCount >= 5) {
+        document.getElementById('touch-target').classList.add('hidden');
+        document.getElementById('touch-game-start-view').classList.remove('hidden');
+        document.getElementById('touch-game-status').innerText = 'Tuyệt vời! Bạn đã hoàn thành xuất sắc thử thách chạm!';
+        addScore(40);
+        triggerConfetti();
+        speakText("Chúc mừng bạn! Ngón tay của bạn rất nhanh nhẹn và chính xác.");
+      } else {
+        showNextTouchTarget();
+      }
+    }
+
+    // --- GAME 2: SCAM RECOGNITION QUIZ ---
+    function renderQuizQuestion() {
+      const q = QUIZ_QUESTIONS[quizIndex];
+      document.getElementById('quiz-sender').innerText = q.sender;
+      document.getElementById('quiz-message').innerText = `"${q.message}"`;
+      document.getElementById('quiz-progress-text').innerText = `Câu số: ${quizIndex + 1}/${QUIZ_QUESTIONS.length}`;
+      
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.classList.add('hidden');
+      feedback.innerText = '';
+    }
+
+    function checkQuizAnswer(userSaysScam) {
+      const q = QUIZ_QUESTIONS[quizIndex];
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.classList.remove('hidden');
+
+      if (userSaysScam === q.isScam) {
+        feedback.className = "mt-3 p-4 rounded-xl font-bold text-base bg-emerald-100 text-emerald-900 border-2 border-emerald-400";
+        feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-xl"></i> ${q.explain}`;
+        playSuccessChime();
+        addScore(30);
+      } else {
+        feedback.className = "mt-3 p-4 rounded-xl font-bold text-base bg-rose-100 text-rose-900 border-2 border-rose-400";
+        feedback.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-600 text-xl"></i> Chưa chính xác rồi! Lưu ý: ${q.explain}`;
+        playAlertChime();
+      }
+      speakText(feedback.innerText);
+    }
+
+    function nextQuizQuestion() {
+      quizIndex = (quizIndex + 1) % QUIZ_QUESTIONS.length;
+      renderQuizQuestion();
+      playBeep(500, 0.05);
+    }
+
+    // --- SCORE & BADGES ---
+    function addScore(points) {
+      playerScore += points;
+      document.getElementById('player-score').innerText = playerScore;
+      localStorage.setItem('tech_score', playerScore.toString());
+    }
+
+    function updateBadgeCounts() {
+      document.getElementById('badge-count').innerText = completedLessons.length + 2;
+      renderBadges();
+    }
+
+    function renderBadges() {
+      const container = document.getElementById('badges-container');
+      container.innerHTML = '';
+      BADGES.forEach(badge => {
+        const item = document.createElement('div');
+        item.className = `p-4 rounded-2xl border-2 flex flex-col items-center text-center shadow-sm ${
+          badge.unlocked ? 'bg-white border-amber-300' : 'bg-slate-200 border-slate-300 opacity-60'
+        }`;
+        item.innerHTML = `
+          <span class="w-14 h-14 rounded-full bg-slate-100 flex items-center justify-center text-3xl mb-2 ${badge.color}">
+            <i class="fa-solid ${badge.icon}"></i>
+          </span>
+          <div class="font-extrabold text-slate-900 text-base leading-tight">${badge.name}</div>
+          <div class="text-xs text-slate-500 font-medium mt-1">${badge.desc}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // --- SOS MODAL LOGIC ---
+    function openSosModal() {
+      document.getElementById('sos-modal').classList.remove('hidden');
+      document.getElementById('sos-modal').classList.add('flex');
+      playBeep(800, 0.2);
+    }
+
+    function closeSosModal() {
+      document.getElementById('sos-modal').classList.add('hidden');
+      document.getElementById('sos-modal').classList.remove('flex');
+    }
+
+    function editRelativePhone() {
+      const currentName = localStorage.getItem('rel_name') || 'Con Gái (Mai Anh)';
+      const currentPhone = localStorage.getItem('rel_phone') || '0987654321';
+      const newName = prompt('Nhập tên người thân cần gọi khẩn cấp:', currentName);
+      if (newName) {
+        const newPhone = prompt('Nhập số điện thoại người thân:', currentPhone);
+        if (newPhone) {
+          localStorage.setItem('rel_name', newName);
+          localStorage.setItem('rel_phone', newPhone);
+          document.getElementById('relative-name').innerText = newName;
+          document.getElementById('relative-phone').innerText = newPhone;
+          document.getElementById('relative-call-btn').href = `tel:${newPhone.replace(/[^0-9]/g, '')}`;
+          alert('Đã cập nhật số điện thoại người thân thành công!');
+        }
+      }
+    }
+
+    function loadSavedRelative() {
+      const name = localStorage.getItem('rel_name') || 'Con Gái (Mai Anh)';
+      const phone = localStorage.getItem('rel_phone') || '0987.654.321';
+      document.getElementById('relative-name').innerText = name;
+      document.getElementById('relative-phone').innerText = phone;
+      document.getElementById('relative-call-btn').href = `tel:${phone.replace(/[^0-9]/g, '')}`;
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    // --- INITIALIZE APPLICATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('player-score').innerText = playerScore;
+      setMode('senior');
+      renderQuizQuestion();
+      renderBadges();
+      loadSavedRelative();
+      updateBadgeCounts();
+
+      // Pre-warm speech voices
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        window.speechSynthesis.onvoiceschanged = () => {
+          window.speechSynthesis.getVoices();
+        };
+      }
+    });
+  </script>
+</body>
+</html>
